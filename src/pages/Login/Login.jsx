@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash} from 'react-icons/fa';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../shared/socialLogin/SocialLogin';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -61,7 +62,7 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='my-4 text-center'><small className='text-red-500 text-center'>New here? <Link to='/signUp' className='underline text-md'>Create a new Account</Link></small></p>
-                    {/* <SocialSignIn></SocialSignIn> */}
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

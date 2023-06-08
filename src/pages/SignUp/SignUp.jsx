@@ -3,33 +3,46 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../shared/socialLogin/SocialLogin';
 
 const SignUp = () => {
-    const { register, handleSubmit,watch, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile} = useAuth();
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
     const onSubmit = data => {
         console.log(data);
 
         // create user
         createUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            updateUserProfile(data.name, data.photoUrl)
-            .then( () => {
-                Swal.fire({
-                    title: 'Success',
-                    text: 'User profile Updated',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoUrl)
+                    .then(() => {
+                        const saveStudent = { displayName: data.name, email: data.email };
+                        fetch('http://localhost:5000/students', {
+                            method: 'POST',
+                            headers: { 'content-type': 'application/json' },
+                            body: JSON.stringify(saveStudent)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: 'User profile Updated',
+                                        icon: 'success',
+                                        confirmButtonText: 'Cool'
+                                    })
+                                    navigate('/');
+                                }
+                            })
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             })
-            navigate('/');
-        })
-        .catch(error => {
-            console.log(error);
-        })
     };
     return (
         <div>
@@ -71,7 +84,7 @@ const SignUp = () => {
                             <label htmlFor="">Confirm Password</label>
                             <input className='input input-bordered' type='password' {...register("confirmPassword", {
                                 required: true,
-                                validate : (value) => value === watch('password') || "Passwords do not match"
+                                validate: (value) => value === watch('password') || "Passwords do not match"
                             })} placeholder='Enter your confirm password' />
                             {errors.password?.type == 'required' && <span className='mt-3 text-red-600'>Confirm Password field required</span>}
                             {errors.confirmPassword && <span className='mt-3 text-red-600'>{errors.confirmPassword.message}</span>}
@@ -87,20 +100,20 @@ const SignUp = () => {
                             </div>
                             <div className='form-control'>
                                 <label htmlFor="">Phone Number</label>
-                                <input className='input input-bordered' type="number" {...register("PhoneNumber", )} placeholder='Enter your number' />
+                                <input className='input input-bordered' type="number" {...register("PhoneNumber",)} placeholder='Enter your number' />
                             </div>
                         </div>
                         <div className='form-control'>
-                                <label htmlFor="">Address</label>
-                                <input className='input input-bordered' type="text" {...register("address", { min: 60, max: 100 })} placeholder='Enter your address' />
-                            </div>
+                            <label htmlFor="">Address</label>
+                            <input className='input input-bordered' type="text" {...register("address", { min: 60, max: 100 })} placeholder='Enter your address' />
+                        </div>
 
                         <div className='form-control'>
                             <input type="submit" className='btn btn-primary' value="SignUP" />
                         </div>
                     </form>
                     <p className='my-4 text-center'><small className='text-red-500 text-center'>Already registered? <Link to='/login' className='underline text-md'>Go to LogIn</Link></small></p>
-                    {/* <SocialSignIn></SocialSignIn> */}
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
