@@ -2,10 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser} = useAuth();
+    const { register, handleSubmit,watch, reset, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile} = useAuth();
     const navigate = useNavigate();
     const onSubmit = data => {
         console.log(data);
@@ -15,6 +16,15 @@ const SignUp = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            updateUserProfile(data.name, data.photoUrl)
+            .then( () => {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'User profile Updated',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+            })
             navigate('/');
         })
         .catch(error => {
@@ -59,10 +69,12 @@ const SignUp = () => {
                         </div>
                         <div className='form-control'>
                             <label htmlFor="">Confirm Password</label>
-                            <input className='input input-bordered' type='password' {...register("confirm-password", {
+                            <input className='input input-bordered' type='password' {...register("confirmPassword", {
                                 required: true,
+                                validate : (value) => value === watch('password') || "Passwords do not match"
                             })} placeholder='Enter your confirm password' />
                             {errors.password?.type == 'required' && <span className='mt-3 text-red-600'>Confirm Password field required</span>}
+                            {errors.confirmPassword && <span className='mt-3 text-red-600'>{errors.confirmPassword.message}</span>}
                         </div>
                         <div className='grid grid-cols-2 gap-4'>
                             <div className='form-control'>

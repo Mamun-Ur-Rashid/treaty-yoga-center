@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash} from 'react-icons/fa';
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [show, setShow] = useState();
+    const {signIn} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const onSubmit = data => {
+        signIn(data.email, data.password)
+        .then( result => {
+            const user = result.user;
+            console.log(user);
+            Swal.fire({
+                title: 'success!',
+                text: 'Successfully login',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              });
+            navigate(from, { replace: true});
+        })
         console.log(data);
-        
+
     };
     return (
         <div>
@@ -16,17 +37,23 @@ const Login = () => {
                 <div className="shadow-2xl bg-base-100 p-4">
                     <h1 className="text-4xl text-center p-4 font-bold">Login</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
-                        
+
                         <div className='form-control'>
                             <label htmlFor="">Email</label>
                             <input className='input input-bordered'  {...register("email", { required: true })} placeholder='Enter your Email' />
                             {errors.email && <span className='mt-3 text-red-600'>Email  is required</span>}
                         </div>
-                        <div className='form-control'>
+                        <div className='form-control relative'>
                             <label htmlFor="">Password</label>
-                            <input className='input input-bordered' type='password' {...register("password", {
+                            <input className='input input-bordered' type={show ? "text" : "password"} {...register("password", {
                                 required: true,
                             })} placeholder='Enter your password' />
+                            <p onClick={() => setShow(!show)}>
+                                {
+                                    show? <FaEye className='absolute top-10 right-10'></FaEye> :
+                                    <FaEyeSlash className='absolute top-10 right-10'></FaEyeSlash>
+                                }
+                            </p>
                             {errors.password?.type == 'required' && <span className='mt-3 text-red-600'>Password field required</span>}
                         </div>
                         <div className='form-control'>
