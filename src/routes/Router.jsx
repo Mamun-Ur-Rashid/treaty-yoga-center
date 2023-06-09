@@ -10,6 +10,7 @@ import Dashboard from "../layouts/Dashboard";
 import SelectedClasses from "../pages/Dashboard/userDashboard/SelectedClasses";
 import ManageStudent from "../pages/Dashboard/ManageStudent/ManageStudent";
 import AddAClass from "../pages/Dashboard/Instructor/AddAClass";
+import ManageClasses from "../pages/Dashboard/ManagesClasses/ManageClasses";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path:'selectedClasses',
                 element:<SelectedClasses></SelectedClasses>
+            },
+            {
+                path:'manageClasses',
+                element: <ManageClasses></ManageClasses>
             },
             {
                 path:'manageStudent',
