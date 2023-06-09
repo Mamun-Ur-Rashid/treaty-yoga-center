@@ -16,6 +16,7 @@ const Navbar = () => {
     const navbarContent = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructors'>Instructors</Link></li>
+        <li><Link to='/classes'>Classes</Link></li>
         <li><Link to='/dashboard/selectedClasses'>Dashboard</Link></li>
         {
             user ? <div className='inline-flex  items-center'><div  className="tooltip  tooltip-bottom " data-tip={user?.displayName}><span><img className='h-14 w-14 rounded-full' src={user?.photoURL} alt="" /></span></div>
