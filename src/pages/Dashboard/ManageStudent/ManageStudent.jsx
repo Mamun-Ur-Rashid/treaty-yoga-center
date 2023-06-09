@@ -2,11 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaUserAltSlash, FaUserAstronaut, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const ManageStudent = () => {
+    const [axiosSecure] = UseAxiosSecure();
     const { data: students = [], refetch } = useQuery(['students'], async () => {
-        const res = await fetch('http://localhost:5000/students')
-        return res.json();
+        const res = await axiosSecure.get('/students')
+        return res.data;
     })
     const handlerMakeAdmin = (student) => {
         fetch(`http://localhost:5000/student/admin/${student._id}`, {

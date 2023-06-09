@@ -18,7 +18,7 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                 </div>
-                <div className="drawer-side bg-neutral-300">
+                <div className="drawer-side bg-neutral-300 w-full">
                     <label htmlFor="my-drawer-2" ></label>
                     <ul className=" menu p-5 w-80 h-full space-y-4">
                         <li><NavLink className='text-2xl mb-12   font-bold text-fuchsia-500' to='/'>Treaty Yoga and <br /> Meditation Center</NavLink></li>
@@ -30,7 +30,7 @@ const Dashboard = () => {
                             </>
                         ) : isInstructor ? (
                             <>
-                                <li><NavLink to='/dashboard/manageClasses'>Add Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/addAClass'>Add A Class</NavLink></li>
                                 <li><NavLink to='/dashboard/manageStudent'>My Classes</NavLink></li>
                             </>
                         ) : (
