@@ -19,7 +19,7 @@ const SignUp = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoUrl)
                     .then(() => {
-                        const saveStudent = { displayName: data.name, email: data.email };
+                        const saveStudent = { displayName: data.name, email: data.email, image: data.image };
                         fetch('http://localhost:5000/students', {
                             method: 'POST',
                             headers: { 'content-type': 'application/json' },

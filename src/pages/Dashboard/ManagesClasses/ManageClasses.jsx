@@ -41,7 +41,6 @@ const ManageClasses = () => {
                                     <th>{cls.status}</th>
                                     <th><button className='btn btn-sm'>Approve</button></th>
                                     <th><button className='btn btn-sm'>Deny</button></th>
-                                
                                 </tr>)
                             }
                         </tbody>
