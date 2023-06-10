@@ -9,7 +9,7 @@ const AddAClass = () => {
     const { user} = useAuth();
     const [axiosSecure] = UseAxiosSecure();
     const { register, handleSubmit,reset, formState: { errors } } = useForm();
-    const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_token}`
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
     const onSubmit = data => {
         const formData = new FormData();
         formData.append('image', data.image[0])

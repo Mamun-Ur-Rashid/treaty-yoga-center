@@ -12,14 +12,14 @@ const SocialLogin = () => {
     const googleSignIn = () => {
         signInGoogle()
             .then(result => {
-                const loggedInStudent = result.user;
-                console.log('social login', loggedInStudent);
-                const saveStudent = { displayName: loggedInStudent.displayName, email: loggedInStudent.email, image: loggedInStudent.image }
-                console.log(saveStudent);
-                fetch('http://localhost:5000/students', {
+                const loggedInUser = result.user;
+                console.log('social login', loggedInUser);
+                const saveUser = { displayName: loggedInUser.displayName, email: loggedInUser.email, photoURL: loggedInUser.photoURL }
+                console.log(saveUser);
+                fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
-                    body: JSON.stringify(saveStudent)
+                    body: JSON.stringify(saveUser)
                 })
                     .then(res => res.json())
                     .then(() => {
@@ -30,8 +30,6 @@ const SocialLogin = () => {
                     })
             })
     }
-
-
     return (
         <div>
             <div className='text-center space-y-4 mb-4'>

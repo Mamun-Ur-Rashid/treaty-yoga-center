@@ -25,23 +25,22 @@ const Dashboard = () => {
                         {isAdmin ? (
                             <>
                                 <li><NavLink to='/dashboard/manageClasses'>Manage Classes</NavLink></li>
-                                <li><NavLink to='/dashboard/manageStudent'>Manage Students</NavLink></li>
+                                <li><NavLink to='/dashboard/manageUser'>Manage users</NavLink></li>
                                 <li><NavLink to='/dashboard/payment'>Payment</NavLink></li>
                             </>
                         ) : isInstructor ? (
                             <>
                                 <li><NavLink to='/dashboard/addAClass'>Add A Class</NavLink></li>
-                                <li><NavLink to='/dashboard/manageStudent'>My Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/myClasses'>My Classes</NavLink></li>
                             </>
                         ) : (
                             <>
-                                <li><NavLink to='/dashboard/selectedClasses'>Selected Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/selectedClasses'>My Selected Classes</NavLink></li>
                                 <li><NavLink to='/dashboard/enrolled'>My Enrolled Classes</NavLink></li>
                                 <li><NavLink to='/dashboard/payment'>Payment</NavLink></li>
                             </>
                         )}
                         
-
                     </ul>
 
                 </div>

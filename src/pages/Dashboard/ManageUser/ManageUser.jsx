@@ -4,14 +4,15 @@ import { FaUserAltSlash, FaUserAstronaut, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 
-const ManageStudent = () => {
+const ManageUser = () => {
     const [axiosSecure] = UseAxiosSecure();
-    const { data: students = [], refetch } = useQuery(['students'], async () => {
-        const res = await axiosSecure.get('/students')
+    const { data: users = [], refetch } = useQuery(['users'], async () => {
+        const res = await axiosSecure.get('/users')
         return res.data;
     })
-    const handlerMakeAdmin = (student) => {
-        fetch(`http://localhost:5000/student/admin/${student._id}`, {
+    const handlerMakeAdmin = (user) => {
+       
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -21,15 +22,15 @@ const ManageStudent = () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: `${student.displayName} is Admin Now!`,
+                        title: "Successfully modified user to Admin",
                         showConfirmButton: false,
                         timer: 1500
                     })
                 }
             })
     }
-    const handlerMakeInstructor = (student) => {
-        fetch(`http://localhost:5000/student/instructor/${student._id}`, {
+    const handlerMakeInstructor = (user) => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
@@ -39,7 +40,7 @@ const ManageStudent = () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: `${student.DisplayName} is Instructor Now!`,
+                        title: "Successfully modified user to Instructor!",
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -48,7 +49,7 @@ const ManageStudent = () => {
     }
     return (
         <div>
-            <h3 className='text-center text-3xl'>Total Students: {students.length}</h3>
+            <h3 className='text-center text-3xl'>Total users: {users.length}</h3>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -64,13 +65,13 @@ const ManageStudent = () => {
                         </thead>
                         <tbody>
                             {
-                                students.map((student, index) => <tr
-                                    key={student._id}>
+                                users.map((user, index) => <tr
+                                    key={user._id}>
                                     <th>{index + 1}</th>
-                                    <th>{student.displayName}</th>
-                                    <th>{student.email}</th>
-                                    <th>{student.role === 'admin' ? "admin" : <button onClick={() => handlerMakeAdmin(student)}><FaUserShield></FaUserShield></button>}</th>
-                                    <th>{student.role === 'instructor' ? "instructor" : <button onClick={() => handlerMakeInstructor(student)}><FaUserAstronaut></FaUserAstronaut></button>}</th>
+                                    <th>{user.displayName}</th>
+                                    <th>{user.email}</th>
+                                    <th>{user.role === 'admin' ? "admin" : <button onClick={() => handlerMakeAdmin(user)}><FaUserShield></FaUserShield></button>}</th>
+                                    <th>{user.role === 'instructor' ? "instructor" : <button onClick={() => handlerMakeInstructor(user)}><FaUserAstronaut></FaUserAstronaut></button>}</th>
                                 </tr>)
                             }
                         </tbody>
@@ -81,4 +82,4 @@ const ManageStudent = () => {
     );
 };
 
-export default ManageStudent;
+export default ManageUser;

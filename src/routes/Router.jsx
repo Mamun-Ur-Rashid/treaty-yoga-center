@@ -7,10 +7,11 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard";
-import SelectedClasses from "../pages/Dashboard/userDashboard/SelectedClasses";
-import ManageStudent from "../pages/Dashboard/ManageStudent/ManageStudent";
 import AddAClass from "../pages/Dashboard/Instructor/AddAClass";
 import ManageClasses from "../pages/Dashboard/ManagesClasses/ManageClasses";
+import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
+import MySelectedClasses from "../pages/Dashboard/userDashboard/MySelectedClasses";
+import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 
 const router = createBrowserRouter([
     {
@@ -45,19 +46,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path:'selectedClasses',
-                element:<SelectedClasses></SelectedClasses>
+                element: <MySelectedClasses></MySelectedClasses>
             },
             {
                 path:'manageClasses',
                 element: <ManageClasses></ManageClasses>
             },
             {
-                path:'manageStudent',
-                element: <ManageStudent></ManageStudent>
+                path:'manageUser',
+                element: <ManageUser></ManageUser>
             },
             {
                 path:'addAClass',
                 element: <AddAClass></AddAClass>
+            },
+            {
+                path:'myClasses',
+                element: <MyClasses></MyClasses>
             }
         ]
     }

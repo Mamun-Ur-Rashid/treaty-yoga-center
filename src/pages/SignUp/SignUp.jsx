@@ -19,11 +19,12 @@ const SignUp = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoUrl)
                     .then(() => {
-                        const saveStudent = { displayName: data.name, email: data.email, image: data.image };
-                        fetch('http://localhost:5000/students', {
+                        const saveUser= { displayName: data.name, email: data.email, photoURL: data.photoUrl };
+                        console.log("signup",saveUser);
+                        fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: { 'content-type': 'application/json' },
-                            body: JSON.stringify(saveStudent)
+                            body: JSON.stringify(saveUser)
                         })
                             .then(res => res.json())
                             .then(data => {
@@ -71,12 +72,12 @@ const SignUp = () => {
                             <label htmlFor="">Password</label>
                             <input className='input input-bordered' type='password' {...register("password", {
                                 required: true,
-                                minLength: 8,
+                                minLength: 6,
                                 maxLength: 20,
                                 pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                             })} placeholder='Enter your password' />
                             {errors.password?.type == 'required' && <span className='mt-3 text-red-600'>Password field required</span>}
-                            {errors.password?.type === 'minLength' && <span className='mt-3 text-red-600'>Password must be 8 characters long</span>}
+                            {errors.password?.type === 'minLength' && <span className='mt-3 text-red-600'>Password must be 6 characters long</span>}
                             {errors.password?.type === 'maxLength' && <span className='mt-3 text-red-600'>Password must be less than 20 characters</span>}
                             {errors.password?.type === 'pattern' && <span className='mt-3 text-red-600'>Password must have one upperCase, one lowerCase, one number and one special characters</span>}
                         </div>

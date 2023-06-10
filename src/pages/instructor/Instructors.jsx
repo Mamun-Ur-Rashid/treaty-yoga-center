@@ -6,10 +6,10 @@ import InstructorCart from './instructorCart';
 const Instructors = () => {
     const [axiosSecure] = UseAxiosSecure();
 
-    const {data : instructors =[], isLoading : loading} = useQuery({
+    const {data : instructors =[]} = useQuery({
         queryKey: ['instructors'],
         queryFn : async () => {
-            const res = await axiosSecure.get('/students')
+            const res = await axiosSecure.get('/users')
             return res.data;
         }
     })

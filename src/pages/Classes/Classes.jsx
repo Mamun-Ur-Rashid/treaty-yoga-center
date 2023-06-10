@@ -6,7 +6,7 @@ const Classes = () => {
     const [classes, loading] = useClasses();
     return (
         <div className='my-16'>
-            <div className='grid grid-cols-2 gap-6'>
+            <div className='grid grid-cols-3 gap-6'>
                 {
                     classes.map(singleClass => <ClassCard
                         key={singleClass._id} singleClass={singleClass}
