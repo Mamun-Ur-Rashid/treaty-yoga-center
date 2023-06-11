@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import useAuth from '../../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_token =import.meta.env.VITE_image_upload_token;
 const AddAClass = () => {
@@ -43,6 +44,9 @@ const AddAClass = () => {
     console.log(image_hosting_token)
     return (
         <div className='w-9/12 mx-auto my-8 bg-gradient-to-r p-4'>
+            <Helmet>
+                <title>Treaty Yoga | Add A Class</title>
+            </Helmet>
             <h2 className='text-4xl font-bold text-fuchsia-600 text-center my-6'>Add A Class</h2>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
                 <div className='grid grid-cols-2 gap-4'>

@@ -3,6 +3,7 @@ import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 // import useClasses from '../../../Hooks/useClasses';
 
 const MySelectedClasses = () => {
@@ -50,6 +51,9 @@ const MySelectedClasses = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Treaty Yoga | MySelected Classes</title>
+            </Helmet>
             <h1 className='text-5xl text-center font-bold my-6'>My Total Selected Classes: {selectedClasses.length} </h1>
             <div className="overflow-x-auto">
                 <table className="table">

@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useClasses from '../../../Hooks/useClasses';
+import useAuth from '../../../Hooks/useAuth';
+import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const ManageClasses = () => {
-    const [classes, refetch] = useClasses();
+    // const [classes, refetch] = useClasses();
+    const {user } = useAuth();
+    const [isApproveDisabled, setIsApproveDisabled] = useState(false);
+    const {data: classes=[],  refetch} = useQuery({
+        queryKey: ['classes'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/classes');
+            return res.json();
+        }
+    })
+
+    const handleStatusApprove = (cls) => {
+        fetch(`http://localhost:5000/classes/${cls._id}`,{
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                refetch();
+                Swal.fire({
+                    position: 'top-right',
+                    icon: 'success',
+                    title: 'Class status modified pending to approve!',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  setIsApproveDisabled(true);
+            }
+        })
+    }
     return (
-        <div>
+        <div className='my-16'>
+            <Helmet>
+                <title>Treaty Yoga | Manage Classes</title>
+            </Helmet>
             <h3 className='text-4xl text-center font-bold'>Total Classes: {classes.length}</h3>
             <div>
                 <div className="overflow-x-auto">
@@ -19,8 +55,6 @@ const ManageClasses = () => {
                                 <th>Instructor Email</th>
                                 <th>Available Seats</th>
                                 <th>Price</th>
-                                <th>Status</th>
-                                <th>Status</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -39,8 +73,8 @@ const ManageClasses = () => {
                                     <td>{cls.availableSeats}</td>
                                     <th>{cls.price}</th>
                                     <th>{cls.status}</th>
-                                    <th><button className='btn btn-sm'>Approve</button></th>
-                                    <th><button className='btn btn-sm'>Deny</button></th>
+                                    <th>{user.status === 'approve'? 'approve' : <button disabled={isApproveDisabled} onClick={ () => {handleStatusApprove(cls)}} className='btn btn-sm bg-fuchsia-400'>Approve</button>}</th>
+                                    <th>{user.status === 'deny'? 'deny' : <button onClick={() => handlerStatusDeny(cls)} className='btn btn-sm bg-fuchsia-300'>Deny</button>}</th>
                                 </tr>)
                             }
                         </tbody>

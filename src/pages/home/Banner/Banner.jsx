@@ -32,7 +32,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="slide-content relative">
-            <img src="https://i.ibb.co/CBz3v1m/banner3.png" />
+            <img src="https://i.ibb.co/30sM3zm/bann1231.jpg" />
             <div className="absolute text-center text-white">
             <h3 className="text-4xl font-bold">Treaty Yoga & Meditation Center</h3>
             <p className="text center sm:mx-6 md:mx-52 mt-4">Discover the transformative power of yoga and meditation, cultivating serenity, strength, and mindfulness. Embrace a journey of self-discovery, deep relaxation, and holistic well-being. Enhance physical vitality, mental clarity, and emotional balance. Experience tranquility, harmony, and inner peace through yoga and meditation practices</p>
@@ -50,7 +50,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="slide-content relative">
-            <img src="https://i.ibb.co/zN6n4hy/bb66.jpg" />
+            <img src="https://i.ibb.co/vQwsWNT/bann1245.jpg" />
             <div className="absolute text-center text-white">
             <h3 className="text-4xl font-bold">Treaty Yoga & Meditation Center</h3>
             <p className="text center sm:mx-6 md:mx-52 mt-4">Discover the transformative power of yoga and meditation, cultivating serenity, strength, and mindfulness. Embrace a journey of self-discovery, deep relaxation, and holistic well-being. Enhance physical vitality, mental clarity, and emotional balance. Experience tranquility, harmony, and inner peace through yoga and meditation practices</p>

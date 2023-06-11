@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { FaUserAltSlash, FaUserAstronaut, FaUserShield } from 'react-icons/fa';
+import { FaUserAstronaut, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const ManageUser = () => {
     const [axiosSecure] = UseAxiosSecure();
@@ -48,7 +49,10 @@ const ManageUser = () => {
             })
     }
     return (
-        <div>
+        <div className='my-16'>
+            <Helmet>
+                <title>Treaty Yoga | Manage User</title>
+            </Helmet>
             <h3 className='text-center text-3xl'>Total users: {users.length}</h3>
             <div>
                 <div className="overflow-x-auto">

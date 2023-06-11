@@ -2,6 +2,7 @@ import React from 'react';
 import UseAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import InstructorCart from './instructorCart';
+import { Helmet } from 'react-helmet-async';
 
 const Instructors = () => {
     const [axiosSecure] = UseAxiosSecure();
@@ -9,13 +10,16 @@ const Instructors = () => {
     const {data : instructors =[]} = useQuery({
         queryKey: ['instructors'],
         queryFn : async () => {
-            const res = await axiosSecure.get('/users')
+            const res = await axiosSecure.get('/instructors')
             return res.data;
         }
     })
     return (
         <div className='my-16'>
-            <h1>instructor pages: {instructors.length}</h1>
+            <Helmet>
+                <title>Treaty Yoga | Instructor</title>
+            </Helmet>
+            <h1 className='text-center text-3xl font-bold my-8'>Treaty Yoga and Meditation Center <br /> all Instructors : {instructors.length}</h1>
             <div className='grid grid-cols-3 gap-4'>
             {
                 instructors.map(instructor => <InstructorCart

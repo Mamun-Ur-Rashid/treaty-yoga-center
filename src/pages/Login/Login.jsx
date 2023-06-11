@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash} from 'react-icons/fa';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../shared/socialLogin/SocialLogin';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -32,6 +33,9 @@ const Login = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>Treaty Yoga | login</title>
+            </Helmet>
             <div className="grid md:grid-cols-2 bg-base-200 my-12 md:w-3/4 mx-auto">
                 <div><img src="" alt="" /></div>
 

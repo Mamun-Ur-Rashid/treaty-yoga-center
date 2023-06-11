@@ -2,6 +2,7 @@ import React from 'react';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const MyClasses = () => {
     const [axiosSecure] = UseAxiosSecure();
@@ -18,6 +19,9 @@ const MyClasses = () => {
     })
     return (
         <div>
+            <Helmet>
+                <title>Treaty Yoga | My Classes</title>
+            </Helmet>
             <h3 className='text-5xl font-bold text-center my-8'>My Total Classes: {myClasses.length}</h3>
             <div>
             <div className="overflow-x-auto">

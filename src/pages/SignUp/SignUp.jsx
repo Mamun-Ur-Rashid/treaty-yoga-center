@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../shared/socialLogin/SocialLogin';
+import { Helmet } from 'react-helmet-async';
 
 const SignUp = () => {
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
@@ -47,6 +48,9 @@ const SignUp = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>Treaty Yoga | SignUP</title>
+            </Helmet>
             <div className="grid md:grid-cols-2 bg-base-200 my-12 md:w-3/4 mx-auto">
                 <div><img src="https://i.ibb.co/KNXxQcz/login.webp" alt="" /></div>
 
