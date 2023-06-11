@@ -2,9 +2,12 @@ import React from 'react';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
+import Swal from 'sweetalert2';
+// import useClasses from '../../../Hooks/useClasses';
 
 const MySelectedClasses = () => {
     const { user } = useAuth();
+    // const [, refetch] = useClasses();
     const [axiosSecure] = UseAxiosSecure();
 
     const { data: selectedClasses = [], refetch } = useQuery({
@@ -14,8 +17,36 @@ const MySelectedClasses = () => {
             return res.data;
         }
     })
-    const handlerDelete = (id) => {
-        
+    const handlerDelete = (selectClass) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+             fetch(`http://localhost:5000/selectedClasses/${selectClass._id}`,{
+                method: "DELETE"
+             })
+             .then(res => res.json())
+             .then(data => {
+                if(data.deletedCount> 0){
+                  refetch();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                }
+             })
+             .catch(error => {
+                console.log(error);
+             })
+            }
+          })
     }
     return (
         <div>
@@ -43,7 +74,7 @@ const MySelectedClasses = () => {
                                 <th>${selectClass.price}</th>
                                 <td>{selectClass.availableSeats}</td>
                                 <th><button className='btn btn-sm'>pay</button></th>
-                                <th><button onClick={ () => handlerDelete(selectClass._id)} className='btn btn-sm'>Delete</button></th>
+                                <th><button onClick={ () => handlerDelete(selectClass)} className='btn btn-sm'>Delete</button></th>
                             </tr>)
                         }
                     </tbody>
