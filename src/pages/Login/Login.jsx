@@ -34,7 +34,7 @@ const Login = () => {
     return (
         <div>
             <Helmet>
-                <title>Treaty Yoga | login</title>
+                <title>Treaty Yoga | Login</title>
             </Helmet>
             <div className="grid md:grid-cols-2 bg-base-200 my-12 md:w-3/4 mx-auto">
                 <div><img src="" alt="" /></div>

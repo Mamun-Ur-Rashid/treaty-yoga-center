@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaHome } from 'react-icons/fa';
+import { FaBars, FaDashcube, FaHome, FaList, FaRegCreditCard, FaRegListAlt, FaUserEdit, FaUtensils } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../Hooks/useAdmin';
 import useInstructor from '../Hooks/useInstructor';
+import useCart from '../Hooks/useCart';
 
 const Dashboard = () => {
-    // TODO: fetch data to admin
-    //  const isAdmin = true;
+    const [cart] = useCart();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
     return (
@@ -24,20 +24,27 @@ const Dashboard = () => {
                         <li><NavLink className='text-2xl mb-12   font-bold text-fuchsia-500' to='/'>Treaty Yoga and <br /> Meditation Center</NavLink></li>
                         {isAdmin ? (
                             <>
-                                <li><NavLink to='/dashboard/manageClasses'>Manage Classes</NavLink></li>
-                                <li><NavLink to='/dashboard/manageUser'>Manage users</NavLink></li>
-                                <li><NavLink to='/dashboard/payment'>Payment</NavLink></li>
+                                <li><NavLink to='/dashboard/manageClasses'><FaList></FaList> Manage Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/manageUser'><FaUserEdit></FaUserEdit> Manage users</NavLink></li>
+                                <div className="divider"></div>
+                                <li><NavLink to='/'><FaHome></FaHome> Home</NavLink></li> 
                             </>
                         ) : isInstructor ? (
                             <>
-                                <li><NavLink to='/dashboard/addAClass'>Add A Class</NavLink></li>
-                                <li><NavLink to='/dashboard/myClasses'>My Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/addAClass'><FaUtensils></FaUtensils> Add A Class</NavLink></li>
+                                <li><NavLink to='/dashboard/myClasses'><FaRegListAlt></FaRegListAlt> My Classes</NavLink></li>
+                                <div className="divider"></div>
+                                <li><NavLink to='/'><FaHome></FaHome> Home</NavLink></li>
                             </>
                         ) : (
                             <>
-                                <li><NavLink to='/dashboard/selectedClasses'>My Selected Classes</NavLink></li>
-                                <li><NavLink to='/dashboard/enrolled'>My Enrolled Classes</NavLink></li>
-                                <li><NavLink to='/dashboard/payment'>Payment</NavLink></li>
+                                <li><NavLink to='/dashboard/selectedClasses'><FaRegListAlt></FaRegListAlt> My Selected Classes  
+                                <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                                </NavLink></li>
+                                <li><NavLink to='/dashboard/myEnrolledClasses'><FaDashcube></FaDashcube> My Enrolled Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/payment'><FaRegCreditCard></FaRegCreditCard> Payment History</NavLink></li>
+                                <div className="divider"></div>
+                                <li><NavLink to='/'><FaHome></FaHome> Home</NavLink></li>
                             </>
                         )}
                         

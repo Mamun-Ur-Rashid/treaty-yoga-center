@@ -1,5 +1,4 @@
 import React from 'react';
-import useClasses from '../../Hooks/useClasses';
 import ClassCard from '../classCard/ClassCard';
 import UseAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -20,6 +19,7 @@ const Classes = () => {
             <Helmet>
                 <title>Treaty Yoga | Classes</title>
             </Helmet>
+            <h3 className='text-center text-4xl font-bold my-8'>Treaty Yoga and Meditation Center <br /> All Classes List</h3>
             <div className='grid grid-cols-3 gap-6'>
                 {
                     classes.map(singleClass => <ClassCard

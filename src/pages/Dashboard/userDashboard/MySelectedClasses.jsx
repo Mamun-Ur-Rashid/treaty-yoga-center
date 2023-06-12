@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet-async';
+import { FaTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 // import useClasses from '../../../Hooks/useClasses';
 
 const MySelectedClasses = () => {
@@ -18,6 +20,7 @@ const MySelectedClasses = () => {
             return res.data;
         }
     })
+    const total = selectedClasses.reduce((sum, item) => item.price + sum, 0);
     const handlerDelete = (selectClass) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -27,34 +30,36 @@ const MySelectedClasses = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-             fetch(`http://localhost:5000/selectedClasses/${selectClass._id}`,{
-                method: "DELETE"
-             })
-             .then(res => res.json())
-             .then(data => {
-                if(data.deletedCount> 0){
-                  refetch();
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                      )
-                }
-             })
-             .catch(error => {
-                console.log(error);
-             })
+                fetch(`http://localhost:5000/selectedClasses/${selectClass._id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             }
-          })
+        })
     }
     return (
         <div>
             <Helmet>
                 <title>Treaty Yoga | MySelected Classes</title>
             </Helmet>
-            <h1 className='text-5xl text-center font-bold my-6'>My Total Selected Classes: {selectedClasses.length} </h1>
+            <h1 className='text-5xl text-center font-bold my-6'>My Total Selected Classes: {selectedClasses.length}  </h1>
+            <h3 className='text-center text-3xl font-bold'>Total :$ {total} <Link to='/dashboard/payment'><button >Pay</button></Link></h3>
+
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -77,8 +82,8 @@ const MySelectedClasses = () => {
                                 <td>{selectClass.instructorName}</td>
                                 <th>${selectClass.price}</th>
                                 <td>{selectClass.availableSeats}</td>
-                                <th><button className='btn btn-sm'>pay</button></th>
-                                <th><button onClick={ () => handlerDelete(selectClass)} className='btn btn-sm'>Delete</button></th>
+                                <th><Link to='/dashboard/payment'><button className='btn btn-sm bg-fuchsia-200'>pay</button></Link></th>
+                                <th><button onClick={() => handlerDelete(selectClass)} className='btn btn-lg text-4xl  text-red-500'><FaTrashAlt></FaTrashAlt> </button></th>
                             </tr>)
                         }
                     </tbody>
