@@ -1,7 +1,8 @@
 import React from 'react';
 
-const PopularClassesCart = ({popularClass}) => {
+const PopularClassCart = ({popularClass}) => {
     const {image, className, instructorName, price, availableSeats} = popularClass;
+    // console.log(popularClass);
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -20,4 +21,4 @@ const PopularClassesCart = ({popularClass}) => {
     );
 };
 
-export default PopularClassesCart;
+export default PopularClassCart;

@@ -16,11 +16,13 @@ import MyEnrolledClasses from "../pages/Dashboard/userDashboard/MyEnrolledClasse
 import Payment from "../pages/Dashboard/userDashboard/Payment/Payment";
 import AdminRoute from "./AdminRoute";
 import InstructorRouter from "./InstructorRouter";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path:'/',
         element: <Main></Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path:'/',

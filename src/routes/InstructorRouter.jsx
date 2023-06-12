@@ -1,12 +1,14 @@
 import React from 'react';
 import useInstructor from '../Hooks/useInstructor';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
+import { Vortex } from 'react-loader-spinner';
 
 const InstructorRouter = ({children}) => {
     const {user, loading} = useAuth();
     const [isInstructor, setIsInstructor] = useInstructor(); 
     const location = useLocation();
-    if(loading || isInstructor){
+    if(loading){
         return <Vortex
         visible={true}
         height="80"
