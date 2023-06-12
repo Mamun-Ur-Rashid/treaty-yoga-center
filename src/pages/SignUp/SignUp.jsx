@@ -47,16 +47,16 @@ const SignUp = () => {
             })
     };
     return (
-        <div>
+        <div className='bg-slate-300'>
             <Helmet>
                 <title>Treaty Yoga | SignUP</title>
             </Helmet>
-            <div className="grid md:grid-cols-2 bg-base-200 my-12 md:w-3/4 mx-auto">
-                <div><img src="https://i.ibb.co/KNXxQcz/login.webp" alt="" /></div>
+            <div className="grid md:grid-cols-2  my-12 md:w-3/4 mx-auto gap-4">
+                <div className='flex justify-center items-center'><img src="https://i.ibb.co/CbtLfxV/login.png" alt="" /></div>
 
-                <div className="shadow-2xl bg-base-100 p-4">
+                <div className="shadow-2xl  p-4">
                     <h1 className="text-4xl text-center p-4 font-bold">SignUP!</h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className='space-y-2'>
+                    <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
                         <div className='form-control'>
                             <label htmlFor="">Name</label>
                             <input className='input input-bordered' {...register("name", { required: true })} placeholder='Enter your name' />

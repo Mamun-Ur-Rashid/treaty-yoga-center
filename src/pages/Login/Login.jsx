@@ -32,12 +32,12 @@ const Login = () => {
 
     };
     return (
-        <div>
+        <div className='bg-gray-300'>
             <Helmet>
                 <title>Treaty Yoga | Login</title>
             </Helmet>
-            <div className="grid md:grid-cols-2 bg-base-200 my-12 md:w-3/4 mx-auto">
-                <div><img src="" alt="" /></div>
+            <div className="grid md:grid-cols-2 gap5 my-12 md:w-3/4 mx-auto">
+                <div className='flex justify-center items-center'><img src="https://i.ibb.co/CbtLfxV/login.png" alt="" /></div>
 
                 <div className="shadow-2xl bg-base-100 p-4">
                     <h1 className="text-4xl text-center p-4 font-bold">Login</h1>

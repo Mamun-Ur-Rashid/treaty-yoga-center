@@ -82,7 +82,7 @@ const MySelectedClasses = () => {
                                 <td>{selectClass.instructorName}</td>
                                 <th>${selectClass.price}</th>
                                 <td>{selectClass.availableSeats}</td>
-                                <th><Link to='/dashboard/payment'><button className='btn btn-sm bg-fuchsia-200'>pay</button></Link></th>
+                                <th><Link to={`/dashboard/payment/${selectClass._id}`}><button className='btn btn-sm bg-fuchsia-200'>pay</button></Link></th>
                                 <th><button onClick={() => handlerDelete(selectClass)} className='btn btn-lg text-4xl  text-red-500'><FaTrashAlt></FaTrashAlt> </button></th>
                             </tr>)
                         }
