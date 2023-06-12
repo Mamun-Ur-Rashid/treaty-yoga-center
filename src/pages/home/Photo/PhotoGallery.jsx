@@ -8,7 +8,7 @@ import { EffectCoverflow, Pagination } from "swiper";
 import './photogallery.css'
 const PhotoGallery = () => {
     return (
-        <div className="h-[450px] my-16">
+        <div className="h-[450px] my-16 mb-20">
             <h3 className="text-center text-4xl font-bold my-8">Photo Gallery</h3>
             <Swiper
                 effect={"coverflow"}

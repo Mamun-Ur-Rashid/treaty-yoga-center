@@ -14,6 +14,8 @@ import MySelectedClasses from "../pages/Dashboard/userDashboard/MySelectedClasse
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import MyEnrolledClasses from "../pages/Dashboard/userDashboard/MyEnrolledClasses";
 import Payment from "../pages/Dashboard/userDashboard/Payment/Payment";
+import AdminRoute from "./AdminRoute";
+import InstructorRouter from "./InstructorRouter";
 
 const router = createBrowserRouter([
     {
@@ -57,23 +59,25 @@ const router = createBrowserRouter([
             {
                 path:'payment/:id',
                 element:<Payment></Payment>,
-                loader: (params) => fetch(`http://localhost:5000/selectedClasses/${params._id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/selectedClass/${params.id}`)
             },
+            // admin route
             {
                 path:'manageClasses',
-                element: <ManageClasses></ManageClasses>
+                element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
             },
             {
                 path:'manageUser',
-                element: <ManageUser></ManageUser>
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
             },
+            // instructor route
             {
                 path:'addAClass',
-                element: <AddAClass></AddAClass>
+                element: <InstructorRouter><AddAClass></AddAClass></InstructorRouter>
             },
             {
                 path:'myClasses',
-                element: <MyClasses></MyClasses>
+                element:<InstructorRouter> <MyClasses></MyClasses></InstructorRouter>
             }
         ]
     }

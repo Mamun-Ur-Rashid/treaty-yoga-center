@@ -8,7 +8,7 @@ import { useLoaderData } from 'react-router-dom';
 const stripePromise = loadStripe(import.meta.env.VITE_payment_pk);
 const Payment = () => {
     const cart = useLoaderData();
-
+    const {price} = cart;
     //  const [cart, refetch] = useCart();
     //  const total = cart.reduce((sum, selectClass) => sum + selectClass.price, 0);
     //  const price = parseFloat(total.toFixed(2));
@@ -19,7 +19,7 @@ const Payment = () => {
             <h3 className='text-center font-bold text-3xl'>Payment</h3>
             <div>
                 <Elements stripe={stripePromise}>
-                    <CheckoutForm></CheckoutForm>
+                    <CheckoutForm price={price}></CheckoutForm>
                 </Elements>
             </div>
         </div>
