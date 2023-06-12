@@ -64,7 +64,6 @@ const ManageUser = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>role</th>
-                                <th>role</th>
                             </tr>
                         </thead>
                         <tbody>

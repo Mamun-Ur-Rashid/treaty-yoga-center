@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import useClasses from '../../../Hooks/useClasses';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
+import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const ManageClasses = () => {
-    // const [classes, refetch] = useClasses();
     const {user } = useAuth();
+    const [axiosSecure] = UseAxiosSecure();
     const [isApproveDisabled, setIsApproveDisabled] = useState(false);
-    const {data: classes=[],  refetch} = useQuery({
+    const {data: manageClasses=[],  refetch} = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/classes');
-            return res.json();
+            const res = await axiosSecure.get('http://localhost:5000/classes');
+            return res.data;
         }
     })
 
@@ -41,7 +41,7 @@ const ManageClasses = () => {
             <Helmet>
                 <title>Treaty Yoga | Manage Classes</title>
             </Helmet>
-            <h3 className='text-4xl text-center font-bold'>Total Classes: {classes.length}</h3>
+            <h3 className='text-4xl text-center font-bold'>Total Classes: {manageClasses.length}</h3>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">
@@ -60,7 +60,7 @@ const ManageClasses = () => {
                         </thead>
                         <tbody>
                             {
-                                classes.map((cls, index) => <tr key={cls._id}>
+                                manageClasses.map((cls, index) => <tr key={cls._id}>
                                     <td>{index + 1}</td>
                                     <td>{cls.className}</td>
                                     <td> <div className="avatar">
