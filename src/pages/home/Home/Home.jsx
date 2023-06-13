@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import PhotoGallery from '../Photo/PhotoGallery';
 import PopularClasses from '../popularClasses/PopularClasses';
 import PopularInstructor from '../popularInstructor/PopularInstructor';
+import Contact from '../Contact';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <PopularClasses></PopularClasses>
             <PopularInstructor></PopularInstructor>
             <PhotoGallery></PhotoGallery>
+            <Contact></Contact>
            
         </div>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import PopularClassCart from './PopularClassCart';
+import { Link } from 'react-router-dom';
 
 const PopularClasses = () => {
     const [axiosSecure] = UseAxiosSecure();
@@ -9,7 +10,7 @@ const PopularClasses = () => {
     const { data: popularClasses = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['popularClasses'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/popularClasses');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/popularClasses');
             // console.log(res.data);
             return res.data;
         }
@@ -22,6 +23,9 @@ const PopularClasses = () => {
                     popularClasses.map(popularClass => <PopularClassCart
                     key={popularClass._id} popularClass={popularClass}></PopularClassCart>)
                 }
+            </div>
+            <div className='flex justify-center items-center my-8 border-2 p-6 w-1/2 mx-auto bg-fuchsia-100'>
+               <Link to='/classes'> <button className='btn btn-outline p-4 mt-4 border-2 w-full '>Select Now</button></Link>
             </div>
         </div>
     );

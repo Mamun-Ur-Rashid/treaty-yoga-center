@@ -15,7 +15,7 @@ const ClassCard = ({ singleClass }) => {
     const handlerSelectedClass = (singleClass) => {
         if (user && user?.email) {
             const selectedClass = { className, instructorName, availableSeats, price, email:user?.email }
-            fetch('http://localhost:5000/selectedClasses',{
+            fetch('https://treaty-yoga-center.vercel.app/selectedClasses',{
                 method: 'POST',
                 headers: {'content-type': "application/json"},
                 body: JSON.stringify(selectedClass)

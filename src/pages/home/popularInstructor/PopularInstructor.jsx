@@ -11,13 +11,13 @@ const PopularInstructor = () => {
     const { data: popularInstructors=[], isLoading: loading, refetch } = useQuery({
         queryKey: ['popularInstructors'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/popularInstructors');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/popularInstructors');
             return res.data;
         }
     })
     return (
         <div className='my-16'>
-            <h3 className='text-center text-4xl font-bold my-8'>Popular Instructors</h3>
+            <h3 className='text-center text-4xl font-bold my-12'>Popular Instructors</h3>
             <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4'>
                 {
                     popularInstructors.map(popularInstructor => <PopularInstructorCart key={popularInstructor._id}

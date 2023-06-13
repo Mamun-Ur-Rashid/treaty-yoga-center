@@ -10,7 +10,7 @@ const Classes = () => {
     const {data: classes=[], isLoading: loading, refetch} = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/classes/approve');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/classes/approve');
             return res.data;
         }
     }) 

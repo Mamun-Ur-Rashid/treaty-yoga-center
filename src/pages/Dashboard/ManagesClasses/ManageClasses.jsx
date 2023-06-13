@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
@@ -11,13 +11,13 @@ const ManageClasses = () => {
     const {data: manageClasses=[],  refetch} = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/classes');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/classes');
             return res.data;
         }
     })
 
     const handleStatusApprove = (cls) => {
-        fetch(`http://localhost:5000/classes/${cls._id}`,{
+        fetch(`https://treaty-yoga-center.vercel.app/classes/${cls._id}`,{
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -35,7 +35,7 @@ const ManageClasses = () => {
         })
     }
     const handlerStatusDeny = (cls) => {
-        fetch(`http://localhost:5000/class/${cls._id}`,{
+        fetch(`https://treaty-yoga-center.vercel.app/class/${cls._id}`,{
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -89,7 +89,7 @@ const ManageClasses = () => {
                                     <td>{cls.availableSeats}</td>
                                     <th>{cls.price}</th>
                                     <th>{cls.status}</th>
-                                    <th>{user.status === 'approve'? 'approve' : <button disabled={isApproveDisabled} onClick={ () => {handleStatusApprove(cls)}} className='btn btn-sm bg-fuchsia-400'>Approve</button>}</th>
+                                    <th>{user.status === 'approve'? 'approve' : <button onClick={ () => {handleStatusApprove(cls)}} className='btn btn-sm bg-fuchsia-400'>Approve</button>}</th>
                                     <th>{user.status === 'deny'? 'deny' : <button onClick={() => handlerStatusDeny(cls)} className='btn btn-sm bg-fuchsia-300'>Deny</button>}</th>
                                 </tr>)
                             }

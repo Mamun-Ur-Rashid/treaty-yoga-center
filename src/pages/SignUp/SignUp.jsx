@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async';
 
 const SignUp = () => {
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile, logOut } = useAuth();
     const navigate = useNavigate();
     const onSubmit = data => {
         // console.log(data);
@@ -22,7 +22,7 @@ const SignUp = () => {
                     .then(() => {
                         const saveUser= { displayName: data.name, email: data.email, photoURL: data.photoUrl };
                         console.log("signup",saveUser);
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://treaty-yoga-center.vercel.app/users', {
                             method: 'POST',
                             headers: { 'content-type': 'application/json' },
                             body: JSON.stringify(saveUser)
@@ -31,13 +31,16 @@ const SignUp = () => {
                             .then(data => {
                                 if (data.insertedId) {
                                     reset();
-                                    Swal.fire({
-                                        title: 'Success',
-                                        text: 'User profile Updated',
-                                        icon: 'success',
-                                        confirmButtonText: 'Cool'
-                                    })
-                                    navigate('/');
+                                    logOut()
+                                    .then(()=>{})
+                                    navigate('/login');
+                                    // Swal.fire({
+                                    //     title: 'Success',
+                                    //     text: 'User profile Updated',
+                                    //     icon: 'success',
+                                    //     confirmButtonText: 'Cool'
+                                    // })
+                                    // navigate('/');
                                 }
                             })
                     })

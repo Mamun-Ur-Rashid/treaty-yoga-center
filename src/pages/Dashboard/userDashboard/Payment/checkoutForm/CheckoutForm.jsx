@@ -76,6 +76,7 @@ const CheckoutForm = ({price}) => {
       axiosSecure.post('/payments', payment)
       .then( res => {
         console.log(res.data)
+        refetch();
 
         if(res.data.insertResult.insertedId){
           refetch();

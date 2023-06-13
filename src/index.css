@@ -8,3 +8,14 @@
 .drawer-side a{
     background-color: transparent;
 }
+.overlay {
+    pointer-events: none;
+  }
+
+ .active{
+    @apply font-medium tracking-wide text-fuchsia-600 transition-colors duration-200
+  }
+  
+  .default{
+    @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600
+  } 

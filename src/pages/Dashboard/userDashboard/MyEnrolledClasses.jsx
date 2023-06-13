@@ -29,7 +29,6 @@ const MyEnrolledClasses = () => {
                                 <th>Transaction Id</th>
                                 <th>Email</th>
                                 <th>price</th>
-                                <th>Quantity</th>
                                 <th>Class id</th>
                             </tr>
                         </thead>
