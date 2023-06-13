@@ -15,7 +15,7 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
                 console.log('social login', loggedInUser);
                 const saveUser = { displayName: loggedInUser.displayName, email: loggedInUser.email, photoURL: loggedInUser.photoURL }
-                console.log(saveUser);
+                // console.log(saveUser);
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
@@ -34,13 +34,11 @@ const SocialLogin = () => {
         <div>
             <div className='text-center space-y-4 mb-4'>
                 <p>Or Sign Up With</p>
-                <div className='flex justify-center items-start gap-4'>
-                    <p><button onClick={googleSignIn} className="btn btn-circle btn-outline">
+                <div className=''>
+                    <p><button onClick={googleSignIn} className="btn btn-primary">
                         <FaGoogle></FaGoogle>
                     </button></p>
-                    <p><button className="btn btn-circle btn-outline">
-                        <FaGithub></FaGithub>
-                    </button></p>
+                    
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash} from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../shared/socialLogin/SocialLogin';
@@ -10,25 +10,30 @@ import { Helmet } from 'react-helmet-async';
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [show, setShow] = useState();
-    const {signIn} = useAuth();
+    const [errorMessage, setErrorMessage]= useState('');
+    const { signIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
         signIn(data.email, data.password)
-        .then( result => {
-            const user = result.user;
-            console.log(user);
-            Swal.fire({
-                title: 'success!',
-                text: 'Successfully login',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-              });
-            navigate(from, { replace: true});
-        })
-        console.log(data);
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                Swal.fire({
+                    title: 'success!',
+                    text: 'Successfully login',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                });
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                if (error.code === 'auth/wrong-password') {
+                    setErrorMessage('Password does not match!');
+                }
+            });
 
     };
     return (
@@ -55,11 +60,12 @@ const Login = () => {
                             })} placeholder='Enter your password' />
                             <p onClick={() => setShow(!show)}>
                                 {
-                                    show? <FaEye className='absolute top-10 right-10'></FaEye> :
-                                    <FaEyeSlash className='absolute top-10 right-10'></FaEyeSlash>
+                                    show ? <FaEye className='absolute top-10 right-10'></FaEye> :
+                                        <FaEyeSlash className='absolute top-10 right-10'></FaEyeSlash>
                                 }
                             </p>
-                            {errors.password?.type == 'required' && <span className='mt-3 text-red-600'>Password field required</span>}
+                            {errors.password?.type === 'required' && <span className='mt-3 text-red-600'>Password field required</span>}
+                            {errorMessage && <span className='mt-3 text-red-600'>{errorMessage}</span>}
                         </div>
                         <div className='form-control'>
                             <input type="submit" className='btn btn-primary' value="Login" />

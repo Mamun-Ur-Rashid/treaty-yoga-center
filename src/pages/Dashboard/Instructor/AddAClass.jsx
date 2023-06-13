@@ -43,13 +43,13 @@ const AddAClass = () => {
     };
     console.log(image_hosting_token)
     return (
-        <div className='w-9/12 mx-auto my-8 bg-gradient-to-r p-4'>
+        <div className='sm:w-full md:w-9/12 mx-auto my-8 bg-gradient-to-r p-4'>
             <Helmet>
                 <title>Treaty Yoga | Add A Class</title>
             </Helmet>
             <h2 className='text-4xl font-bold text-fuchsia-600 text-center my-6'>Add A Class</h2>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
-                <div className='grid grid-cols-2 gap-4'>
+                <div className='grid md:grid-cols-2 gap-4'>
                     <div className='form-control'>
                         <label htmlFor="">Class Name</label>
                         <input type='text' className='input input-bordered' {...register("className", { required: true })} placeholder='Class Name' />
@@ -59,7 +59,7 @@ const AddAClass = () => {
                         <input type='text' className='input input-bordered' {...register("instructorName", { required: true })} defaultValue={user?.displayName} readOnly placeholder='Enter your name' />
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-4' >
+                <div className='grid md:grid-cols-2 gap-4' >
                     <div className='form-control'>
                         <label htmlFor="">Instructor Email</label>
                         <input type='email' className='input input-bordered'  {...register("email", { required: true })} readOnly defaultValue={user?.email} placeholder='Enter your Email' />
@@ -71,7 +71,7 @@ const AddAClass = () => {
 
                     </div>
                 </div>
-                <div className='grid grid-cols-2 gap-4' >
+                <div className='grid md:grid-cols-2 gap-4' >
                     <div className='form-control'>
                         <label htmlFor="">Price</label>
                         <input type='text' className='input input-bordered'  {...register("price", { required: true })} placeholder='Price' />

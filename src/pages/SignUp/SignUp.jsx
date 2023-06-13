@@ -11,13 +11,13 @@ const SignUp = () => {
     const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
 
         // create user
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 updateUserProfile(data.name, data.photoUrl)
                     .then(() => {
                         const saveUser= { displayName: data.name, email: data.email, photoURL: data.photoUrl };

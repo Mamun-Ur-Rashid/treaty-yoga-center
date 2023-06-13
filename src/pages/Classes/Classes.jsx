@@ -20,7 +20,7 @@ const Classes = () => {
                 <title>Treaty Yoga | Classes</title>
             </Helmet>
             <h3 className='text-center text-4xl font-bold my-8'>Treaty Yoga and Meditation Center <br /> All Classes List</h3>
-            <div className='grid grid-cols-3 gap-6'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-6'>
                 {
                     classes.map(singleClass => <ClassCard
                         key={singleClass._id} singleClass={singleClass}

@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div>
             <footer className=" p-10 bg-gray-600 text-white ">
-                <div className='grid grid-cols-3'>
+                <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-6'>
                     <div className='space-y-2'>
                         <img className='text-center' src="https://i.ibb.co/tB6MH7F/yoga-64.png" alt="yoga-64" border="0"></img>
                         <p className='text-2xl font-bold'>Treaty Yoga and <br /> Meditation Center</p>

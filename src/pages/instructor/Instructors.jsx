@@ -20,7 +20,7 @@ const Instructors = () => {
                 <title>Treaty Yoga | Instructor</title>
             </Helmet>
             <h1 className='text-center text-3xl font-bold my-8'>Treaty Yoga and Meditation Center <br /> all Instructors : {instructors.length}</h1>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4'>
             {
                 instructors.map(instructor => <InstructorCart
                 key={instructor._id} instructor={instructor}>

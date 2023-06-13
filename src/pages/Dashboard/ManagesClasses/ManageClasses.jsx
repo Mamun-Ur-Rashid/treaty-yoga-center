@@ -8,7 +8,6 @@ import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 const ManageClasses = () => {
     const {user } = useAuth();
     const [axiosSecure] = UseAxiosSecure();
-    const [isApproveDisabled, setIsApproveDisabled] = useState(false);
     const {data: manageClasses=[],  refetch} = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
@@ -32,7 +31,24 @@ const ManageClasses = () => {
                     showConfirmButton: false,
                     timer: 1500
                   })
-                  setIsApproveDisabled(true);
+            }
+        })
+    }
+    const handlerStatusDeny = (cls) => {
+        fetch(`http://localhost:5000/class/${cls._id}`,{
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                refetch();
+                Swal.fire({
+                    position: 'top-right',
+                    icon: 'success',
+                    title: 'Class status modified pending to deny',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }
         })
     }

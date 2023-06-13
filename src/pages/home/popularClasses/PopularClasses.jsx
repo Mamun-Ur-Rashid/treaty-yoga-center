@@ -17,7 +17,7 @@ const PopularClasses = () => {
     return (
         <div className='my-16'>
             <h3 className='text-center text-4xl font-bold mt-8 mb-12'>Treaty Yoga Popular Classes</h3>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4'>
                 {
                     popularClasses.map(popularClass => <PopularClassCart
                     key={popularClass._id} popularClass={popularClass}></PopularClassCart>)

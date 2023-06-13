@@ -25,6 +25,11 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
+    // // github login
+    // const gitHubLogin =() => {
+    //     setLoading(true);
+    //     return 
+    // }
     // user profile update
     const updateUserProfile = (name, photoUrl) => {
         return updateProfile(auth.currentUser, {
@@ -41,12 +46,12 @@ const AuthProvider = ({children}) => {
     useEffect( () => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log("current User", currentUser);
+            // console.log("current User", currentUser);
             // jwt token token
            if(currentUser){
             axios.post('http://localhost:5000/jwt', {email: currentUser.email})
             .then(data => {
-                console.log(data.data.token);
+                // console.log(data.data.token);
                 localStorage.setItem('access-token', data.data.token);
                 setLoading(false);
             })
@@ -54,6 +59,7 @@ const AuthProvider = ({children}) => {
            else{
             localStorage.removeItem('access-token');
            }
+           setLoading(false);
           
         }) 
         return () => {
