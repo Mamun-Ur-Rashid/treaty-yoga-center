@@ -70,7 +70,8 @@ const CheckoutForm = ({price}) => {
         transactionId: paymentIntent.id,
         price,
         data: new Date(),
-        userName: user?.displayName
+        userName: user?.displayName,
+        paymentStatus: true
       
       }
       axiosSecure.post('/payments', payment)

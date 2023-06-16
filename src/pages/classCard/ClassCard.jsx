@@ -15,7 +15,7 @@ const ClassCard = ({ singleClass }) => {
     const handlerSelectedClass = (singleClass) => {
         if (user && user?.email) {
             const selectedClass = { className, instructorName, availableSeats, price, email:user?.email }
-            fetch('https://treaty-yoga-center.vercel.app/selectedClasses',{
+            fetch('http://localhost:5000/selectedClasses',{
                 method: 'POST',
                 headers: {'content-type': "application/json"},
                 body: JSON.stringify(selectedClass)
@@ -58,7 +58,7 @@ const ClassCard = ({ singleClass }) => {
                     <p>Price: ${price}</p>
                     <p>Available Seats: {availableSeats}</p>
                     <div className="card-actions justify-center">
-                        <button onClick={() => handlerSelectedClass(singleClass)} className="btn btn-primary w-full">Selected Class</button>
+                        <button onClick={() => handlerSelectedClass(singleClass)} className="btn btn-primary w-full">Select</button>
                     </div>
                 </div>
             </div>

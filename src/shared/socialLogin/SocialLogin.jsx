@@ -15,8 +15,8 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
                 console.log('social login', loggedInUser);
                 const saveUser = { displayName: loggedInUser.displayName, email: loggedInUser.email, photoURL: loggedInUser.photoURL }
-                // console.log(saveUser);
-                fetch('https://treaty-yoga-center.vercel.app/users', {
+                console.log(saveUser)
+                fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify(saveUser)

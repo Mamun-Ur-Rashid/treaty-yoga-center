@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from './useAuth';
 const axiosSecure = axios.create({
-    baseURL: 'https://treaty-yoga-center.vercel.app',
+    baseURL: 'http://localhost:5000',
 })
 const UseAxiosSecure = () => {
     const {logOut} =useAuth();

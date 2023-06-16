@@ -7,7 +7,7 @@ const Contact = () => {
                 <h3 className='text-5xl text-center my-4 font-bold'>Contact now</h3>
                 <div className='border-2 sm:w-full  md:w-1/2 mx-auto my-4'>
                     <div>
-                        <h1 className=' text-5xl text-center font-bold p-4'>+96 2689698748</h1>
+                        <h1 className='text-4xl  text-center font-bold p-4'>+96 2689698748</h1>
                     </div>
                 </div>
                 <h4 className='text-center my-3 text-xl'>Treaty Yoga and Meditation Center</h4>
