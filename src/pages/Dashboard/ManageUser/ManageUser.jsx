@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { FaUserAstronaut, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
@@ -49,7 +48,7 @@ const ManageUser = () => {
             })
     }
     return (
-        <div className='my-16'>
+        <div className='my-16 w-full bg-gray-500 p-5'>
             <Helmet>
                 <title>Treaty Yoga | Manage User</title>
             </Helmet>
@@ -58,6 +57,7 @@ const ManageUser = () => {
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}
+                        
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -66,15 +66,17 @@ const ManageUser = () => {
                                 <th>role</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             {
                                 users.map((user, index) => <tr
                                     key={user._id}>
-                                    <th>{index + 1}</th>
-                                    <th>{user.displayName}</th>
-                                    <th>{user.email}</th>
-                                    <th>{user.role === 'admin' ? "admin" : <button onClick={() => handlerMakeAdmin(user)}><FaUserShield></FaUserShield></button>}</th>
-                                    <th>{user.role === 'instructor' ? "instructor" : <button onClick={() => handlerMakeInstructor(user)}><FaUserAstronaut></FaUserAstronaut></button>}</th>
+                                    <td>{index + 1}</td>
+                                    <td>{user.displayName}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.role}</td>
+                                    <th>{<button className='btn btn-neutral ' disabled={user.role === 'admin'} onClick={() => handlerMakeAdmin(user)} >Make Admin</button>}</th>
+                                    <th>{<button className='btn btn-neutral' disabled={user.role === 'instructor'} onClick={() => handlerMakeInstructor(user)}>Make Instructor</button>}</th>
                                 </tr>)
                             }
                         </tbody>

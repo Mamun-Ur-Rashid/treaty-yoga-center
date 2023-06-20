@@ -55,7 +55,7 @@ const ManageClasses = () => {
         })
     }
     return (
-        <div className='my-16'>
+        <div className='my-16 bg-gray-400 p-4'>
             <Helmet>
                 <title>Treaty Yoga | Manage Classes</title>
             </Helmet>
@@ -91,8 +91,8 @@ const ManageClasses = () => {
                                     <td>{cls.availableSeats}</td>
                                     <th>{cls.price}</th>
                                     <th>{cls.status}</th>
-                                    <th>{user.status === 'approve'? 'approve' : <button onClick={ () => handleStatusApprove(cls)}  disabled={cls.status !== "pending"} className='btn btn-sm bg-fuchsia-400'>Approve</button>}</th>
-                                    <th>{user.status === 'deny'? 'deny' : <button onClick={() => handlerStatusDeny(cls)} disabled={cls.status !== "pending"} className='btn btn-sm bg-fuchsia-300'>Deny</button>}</th>
+                                    <th>{user.status === 'approve'? 'approve' : <button onClick={ () => handleStatusApprove(cls)}  disabled={cls.status !== "Pending"} className='btn btn-sm bg-fuchsia-400'>Approve</button>}</th>
+                                    <th>{user.status === 'deny'? 'deny' : <button onClick={() => handlerStatusDeny(cls)} disabled={cls.status !== "Pending"} className='btn btn-sm bg-fuchsia-300'>Deny</button>}</th>
                                 </tr>)
                             }
                         </tbody>

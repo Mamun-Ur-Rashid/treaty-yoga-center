@@ -5,7 +5,7 @@ import UseAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import '../checkoutForm/checkoutForm.css'
 import useCart from '../../../../../Hooks/useCart';
 
-const CheckoutForm = ({price}) => {
+const CheckoutForm = ({cart,price}) => {
   const stripe = useStripe();
   const elements = useElements();
   const {user} = useAuth();
@@ -67,9 +67,13 @@ const CheckoutForm = ({price}) => {
       // save payment information to the server
       const payment = {
         email: user?.email,
-        transactionId: paymentIntent.id,
+        transactionId: paymentIntent?.id,
         price,
         data: new Date(),
+        classId: cart?._id,
+        availableSeats: parseInt(cart?.availableSeats) - 1,
+        instructorName: cart.instructorName,
+        instructorEmail: cart.email,
         userName: user?.displayName,
         paymentStatus: true
       
