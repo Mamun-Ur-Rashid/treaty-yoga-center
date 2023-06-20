@@ -22,7 +22,7 @@ const SignUp = () => {
                     .then(() => {
                         const saveUser= { displayName: data.name, email: data.email, photoURL: data.photoUrl };
                         console.log("signup",saveUser);
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://treaty-yoga-center.vercel.app/users', {
                             method: 'POST',
                             headers: { 'content-type': 'application/json' },
                             body: JSON.stringify(saveUser)

@@ -11,7 +11,7 @@ const PopularInstructor = () => {
     const { data: popularInstructors=[], isLoading: loading, refetch } = useQuery({
         queryKey: ['popularInstructors'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/popularInstructors');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/popularInstructors');
             return res.data;
         }
     })

@@ -33,7 +33,7 @@ const MySelectedClasses = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/selectedClasses/${selectClass._id}`, {
+                fetch(`https://treaty-yoga-center.vercel.app/selectedClasses/${selectClass._id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

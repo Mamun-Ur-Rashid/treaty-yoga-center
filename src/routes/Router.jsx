@@ -62,7 +62,7 @@ const router = createBrowserRouter([
             {
                 path:'payment/:id',
                 element:<Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/selectedClass/${params.id}`)
+                loader: ({params}) => fetch(`https://treaty-yoga-center.vercel.app/selectedClass/${params.id}`)
             },
             {
                 path:'payment-history',

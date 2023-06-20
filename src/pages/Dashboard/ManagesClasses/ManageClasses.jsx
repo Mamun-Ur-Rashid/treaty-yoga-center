@@ -12,14 +12,14 @@ const ManageClasses = () => {
     const {data: manageClasses=[],  refetch} = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/classes');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/classes');
             return res.data;
         }
     })
 
     const handleStatusApprove = (cls) => {
         setDisabledClassIds(prevIds => [...prevIds, cls._id]);
-        fetch(`http://localhost:5000/classes/${cls._id}`,{
+        fetch(`https://treaty-yoga-center.vercel.app/classes/${cls._id}`,{
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -37,7 +37,7 @@ const ManageClasses = () => {
         })
     }
     const handlerStatusDeny = (cls) => {
-        fetch(`http://localhost:5000/class/${cls._id}`,{
+        fetch(`https://treaty-yoga-center.vercel.app/class/${cls._id}`,{
             method: 'PATCH'
         })
         .then(res => res.json())

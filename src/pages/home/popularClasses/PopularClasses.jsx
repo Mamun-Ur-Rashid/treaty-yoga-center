@@ -12,7 +12,7 @@ const PopularClasses = () => {
     const { data: popularClasses = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['popularClasses'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:5000/popularClasses');
+            const res = await axiosSecure.get('https://treaty-yoga-center.vercel.app/popularClasses');
             // console.log(res.data);
             return res.data;
         }
