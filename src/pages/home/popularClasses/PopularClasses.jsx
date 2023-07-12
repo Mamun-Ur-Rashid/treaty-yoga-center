@@ -20,7 +20,7 @@ const PopularClasses = () => {
     return (
         <div className='my-16'>
             <h3 className='text-center text-4xl font-bold mt-8 mb-12'><Fade bounce>
-           <p> Treaty Yoga and Meditation Center</p></Fade> <br /> Popular Classes</h3>
+           <p className='mt-40'> Treaty Yoga and Meditation Center</p></Fade> <br /> Popular Classes</h3>
             <div className='grid sm:grid-cols-1 md:grid-cols-3 gap-4'>
                 {
                     popularClasses.map(popularClass => <PopularClassCart

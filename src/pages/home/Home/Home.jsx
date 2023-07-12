@@ -5,6 +5,8 @@ import PhotoGallery from '../Photo/PhotoGallery';
 import PopularClasses from '../popularClasses/PopularClasses';
 import PopularInstructor from '../popularInstructor/PopularInstructor';
 import Contact from '../Contact';
+import Testimonials from '../../testimonial/Testimonial';
+import FAQ from '../../FAQ/FAQ';
 
 const Home = () => {
     return (
@@ -13,9 +15,12 @@ const Home = () => {
                 <title>Treaty Yoga | Home</title>
             </Helmet>
             <Banner></Banner>
+            <PhotoGallery></PhotoGallery>
             <PopularClasses></PopularClasses>
             <PopularInstructor></PopularInstructor>
-            <PhotoGallery></PhotoGallery>
+           
+            <Testimonials></Testimonials>
+            <FAQ></FAQ>
             <Contact></Contact>
            
         </div>
